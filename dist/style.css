@@ -18,7 +18,7 @@ ul li {
   position: relative;
   padding: 12px 8px 12px 40px;
   list-style-type: none;
-  background: purple;
+  background: grey;
   font-size: 18px;
 }
 ul li:hover {
