@@ -55,19 +55,14 @@
                 if (inputValue === '') {
                     alert("Add task");
                 } else {
-                    document.getElementById("addtasks").appendChild(li);
-                    
+                    document.getElementById("addtasks").appendChild(li);                    
                 }
 
-                var todoTasks;
-                function saveLocal(newElement) {
-                    todoTasks = addtasks.innerText
-                    localStorage.setItem("1", todoTasks);
-                    
-
-                }         
-
-
+                // var todoTasks;
+                // function saveLocal(newElement) {
+                //     todoTasks = addtasks.innerText
+                //     localStorage.setItem("1", todoTasks);
+                // }   
 
                 document.getElementById("myInput").value = "";
                 var span = document.createElement("SPAN");
