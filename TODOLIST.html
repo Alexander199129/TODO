@@ -13,9 +13,7 @@
         <ul id="addtasks"></ul>
         <button type="button" id="clear-list" onclick="removeAll()">Remove all tasks</button>
         <script>
-            // if (localStorage.getItem("todoTasks")) {
-            //     addtasks.innerText = localStorage.getItem("todoTasks");
-            // }
+           
 
         
             // создаем кнопку закрытия таск
@@ -47,7 +45,7 @@
                 }
             }, false);
             // Создаем новый таск
-            function newElement() {
+            function newElement() {            
                 var li = document.createElement("li");
                 var inputValue = document.getElementById("myInput").value;
                 var t = document.createTextNode(inputValue);
@@ -55,14 +53,20 @@
                 if (inputValue === '') {
                     alert("Add task");
                 } else {
-                    document.getElementById("addtasks").appendChild(li);                    
+                    document.getElementById("addtasks").appendChild(li);
+                    saveLocal();                    
                 }
-
-                // var todoTasks;
-                // function saveLocal(newElement) {
-                //     todoTasks = addtasks.innerText
-                //     localStorage.setItem("1", todoTasks);
-                // }   
+                
+                
+                var todoTasks;
+                function saveLocal(newElement) {                    
+                    todoTasks = addtasks.innerText
+                    localStorage.setItem("myInput", todoTasks);             
+                
+                } 
+                //  if (localStorage.getItem === '') {
+                //     addtasks.innerText = localStorage.getItem("todoTasks");
+                // }  
 
                 document.getElementById("myInput").value = "";
                 var span = document.createElement("SPAN");
@@ -76,7 +80,7 @@
                         div.style.display = "none";
                         // saveLocal();
                     }
-                }
+                }                            
             }
 
             // Стереть все
