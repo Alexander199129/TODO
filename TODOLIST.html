@@ -6,7 +6,7 @@
     </head>
     <body>
         <div class="header">
-            <h2>To Do List</h2>
+            <h2>My To Do List</h2>
             <input type="text" id="myInput" placeholder="Add tasks......">
             <button onclick="newElement()" class="addBtn">Add</button>
         </div>
@@ -27,7 +27,6 @@
                 myNodelist[i].appendChild(span);
                 // saveLocal();
             }
-            // Закрыть данный таск
             var close = document.getElementsByClassName("close");
             var i;
             for (i = 0; i < close.length; i++) {
@@ -35,15 +34,23 @@
                     var div = this.parentElement;
                     div.style.display = "none";
                 }
-                // saveLocal();
             }
+
+            // var checkedList = document.querySelector('ul');                
+            // var todoTasks;
+            // function saveLocal() {                    
+            //     todoTasks = list.innerHTML
+            //     localStorage.setItem('todoTasks', todoTasks);
+            // } 
+            
             // Создаем чекбокс
             var list = document.querySelector('ul');
             list.addEventListener('click', function (ev) {
                 if (ev.target.tagName === 'LI') {
                     ev.target.classList.toggle('checked');
-                }
+                } saveLocal()
             }, false);
+
             // Создаем новый таск
             function newElement() {            
                 var li = document.createElement("li");
@@ -53,44 +60,80 @@
                 if (inputValue === '') {
                     alert("Add task");
                 } else {
-                    document.getElementById("addtasks").appendChild(li);
-                    saveLocal();                    
-                }
+                    document.getElementById("addtasks").appendChild(li);                                                          
+                }                                          
                 
-                
-                var todoTasks;
-                function saveLocal(newElement) {                    
-                    todoTasks = addtasks.innerText
-                    localStorage.setItem("myInput", todoTasks);             
-                
-                } 
-                //  if (localStorage.getItem === '') {
-                //     addtasks.innerText = localStorage.getItem("todoTasks");
-                // }
-                  
-
                 document.getElementById("myInput").value = "";
                 var span = document.createElement("SPAN");
-                var txt = document.createTextNode("remove task");
+                var txt = document.createTextNode("delete");
                 span.className = "close";
                 span.appendChild(txt);
                 li.appendChild(span);
+                // saveLocal()
+
                 for (i = 0; i < close.length; i++) {
                     close[i].onclick = function () {
                         var div = this.parentElement;
-                        div.style.display = "none";
-                        // saveLocal();
-                    }
-                }                            
-            }
+                        div.style.display = "none";                                              
+                    }                     
+                }
+                // var checkedList = document.querySelector('ul');                
+                // var todoTasks;
+                // function saveLocal() {                    
+                //     todoTasks = list.innerText
+                //     localStorage.setItem('todoTasks', todoTasks);
+                // }
+                
+                localStorage.setItem(localStorage.length + 1, li.innerText);                             
+            } 
+                // var checkedList = document.querySelector('ul');                
+                // var todoTasks;
+                // function saveLocal() {                    
+                //     todoTasks = list.innerText
+                //     localStorage.setItem('todoTasks', todoTasks);
+                // }           
+
+            // Закрыть данный таск
+            // var close = document.getElementsByClassName("close");
+            // var i;
+            // for (i = 0; i < close.length; i++) {
+            //     close[i].onclick = function () {
+            //         var div = this.parentElement;
+            //         div.style.display = "none";
+            //     }
+            // }
+            // var checkedList = document.querySelector('ul');
+            // var listSave;
+            // function toLocal() {
+            // listSave = checkedList.innerHTML;
+            // localStorage.setItem('listSave', listSave);
+            // }
 
             // Стереть все
             function removeAll() {
                 var lst = document.getElementsByTagName("ul");
-                lst[0].innerHTML = "";
-                // saveLocal();
+                lst[0].innerHTML = "";                
             }
-           
+            
+            var checkedList = document.querySelector('ul');                
+            var todoTasks;
+            function saveLocal() {                    
+                todoTasks = list.innerHTML
+                localStorage.setItem('todoTasks', todoTasks);
+            }
+            for (var j = 1; j <= localStorage.length; j++) {
+                var li = document.createElement("li");
+                var inputValue = document.getElementById("myInput").value;
+                var t = document.createTextNode(inputValue);
+                
+                li.appendChild(t);
+                li.innerText = localStorage[j];
+                
+            }
+            
+            if(localStorage.getItem('todoTasks')) {
+            checkedList.innerHTML = localStorage.getItem('todoTasks');
+            }     
         
         </script>
     </body>
