@@ -6,7 +6,7 @@ body {
 
 * {
   box-sizing: border-box;
-  border-radius: 50px;
+  border-radius: 26px;
 }
 
 ul {
@@ -25,7 +25,7 @@ ul li:hover {
   background: #ddd;
 }
 ul li.checked {
-  background: purple;
+  background: burlywood;
   color: #eee;
   text-decoration: line-through;
 }
@@ -54,8 +54,11 @@ ul li.checked::before {
 }
 
 .header {
-  padding: 30px 40px;
+  padding: 56px 137px;
+  padding-bottom: 82px;
+  padding-left: 228px;
   text-align: center;
+  background: url(todo.jpg) no-repeat center/cover;
 }
 .header:after {
   content: "";
@@ -71,6 +74,7 @@ input {
   padding: 10px;
   float: left;
   font-size: 16px;
+  opacity: 0.5;
 }
 
 .addBtn {

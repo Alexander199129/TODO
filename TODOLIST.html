@@ -5,136 +5,77 @@
         <link rel="stylesheet" href="dist/style.css">
     </head>
     <body>
-        <div class="header">
-            <h2>My To Do List</h2>
-            <input type="text" id="myInput" placeholder="Add tasks......">
-            <button onclick="newElement()" class="addBtn">Add</button>
+        <div class="background">
+            <div class="header">
+                <h2></h2>
+                <input type="text" id="myInput" placeholder="Add tasks......">
+                <button onclick="newElement()" class="addBtn">Add</button>
+            </div>
+            <ul id="addtasks"></ul>
+            <button type="button" id="clear-list" onclick="removeAll()">Remove all tasks</button>
         </div>
-        <ul id="addtasks"></ul>
-        <button type="button" id="clear-list" onclick="removeAll()">Remove all tasks</button>
-        <script>
-           
+            <script>                      
+                
+                // Создаем чекбокс            
+                var list = document.querySelector('ul');
+                list.addEventListener('click', function (ev) {
+                    if (ev.target.tagName === 'LI') {
+                        ev.target.classList.toggle('checked');
+                    } 
+                }, false);
 
-        
-            // создаем кнопку закрытия таск
-            var myNodelist = document.getElementsByTagName("LI");
-            var i;
-            for (i = 0; i < myNodelist.length; i++) {
-                var span = document.createElement("SPAN");
-                var txt = document.createTextNode("remove task");
-                span.className = "close";
-                span.appendChild(txt);
-                myNodelist[i].appendChild(span);
-                // saveLocal();
-            }
-            var close = document.getElementsByClassName("close");
-            var i;
-            for (i = 0; i < close.length; i++) {
-                close[i].onclick = function () {
-                    var div = this.parentElement;
-                    div.style.display = "none";
+                // Создаем новый таск
+                function newElement() {            
+                    var li = document.createElement("li");
+                    var inputValue = document.getElementById("myInput").value;
+                    var t = document.createTextNode(inputValue);
+                    li.appendChild(t);
+                    if (inputValue === '') {
+                        alert("Add task");
+                    } else {
+                        document.getElementById("addtasks").appendChild(li);                                                          
+                    }                                          
+                    
+                    document.getElementById("myInput").value = "";
+                    var span = document.createElement("SPAN");
+                    span.innerHTML = '<img src="delete.jpg">';
+                    span.className = "close";
+                    li.appendChild(span);
+
+                    const removeLi = () => {
+                        var taskList = document.getElementById("addtasks");
+                        taskList.removeChild(li);
+                    }
+                    span.addEventListener("click", removeLi);                                   
+                    
+                    localStorage.setItem(localStorage.length + 1, li.innerText);                             
+                }                
+
+                // Стереть все
+                function removeAll() {
+                    var lst = document.getElementsByTagName("ul");
+                    lst[0].innerHTML = "";                
                 }
-            }
-
-            // var checkedList = document.querySelector('ul');                
-            // var todoTasks;
-            // function saveLocal() {                    
-            //     todoTasks = list.innerHTML
-            //     localStorage.setItem('todoTasks', todoTasks);
-            // } 
-            
-            // Создаем чекбокс
-            var list = document.querySelector('ul');
-            list.addEventListener('click', function (ev) {
-                if (ev.target.tagName === 'LI') {
-                    ev.target.classList.toggle('checked');
-                } saveLocal()
-            }, false);
-
-            // Создаем новый таск
-            function newElement() {            
-                var li = document.createElement("li");
-                var inputValue = document.getElementById("myInput").value;
-                var t = document.createTextNode(inputValue);
-                li.appendChild(t);
-                if (inputValue === '') {
-                    alert("Add task");
-                } else {
-                    document.getElementById("addtasks").appendChild(li);                                                          
-                }                                          
                 
-                document.getElementById("myInput").value = "";
-                var span = document.createElement("SPAN");
-                var txt = document.createTextNode("delete");
-                span.className = "close";
-                span.appendChild(txt);
-                li.appendChild(span);
-                // saveLocal()
-
-                for (i = 0; i < close.length; i++) {
-                    close[i].onclick = function () {
-                        var div = this.parentElement;
-                        div.style.display = "none";                                              
-                    }                     
+                var checkedList = document.querySelector('ul');                
+                var todoTasks;
+                function saveLocal() {                    
+                    todoTasks = list.innerHTML
+                    localStorage.setItem('todoTasks', todoTasks);
                 }
-                // var checkedList = document.querySelector('ul');                
-                // var todoTasks;
-                // function saveLocal() {                    
-                //     todoTasks = list.innerText
-                //     localStorage.setItem('todoTasks', todoTasks);
-                // }
-                
-                localStorage.setItem(localStorage.length + 1, li.innerText);                             
-            } 
-                // var checkedList = document.querySelector('ul');                
-                // var todoTasks;
-                // function saveLocal() {                    
-                //     todoTasks = list.innerText
-                //     localStorage.setItem('todoTasks', todoTasks);
-                // }           
 
-            // Закрыть данный таск
-            // var close = document.getElementsByClassName("close");
-            // var i;
-            // for (i = 0; i < close.length; i++) {
-            //     close[i].onclick = function () {
-            //         var div = this.parentElement;
-            //         div.style.display = "none";
-            //     }
-            // }
-            // var checkedList = document.querySelector('ul');
-            // var listSave;
-            // function toLocal() {
-            // listSave = checkedList.innerHTML;
-            // localStorage.setItem('listSave', listSave);
-            // }
-
-            // Стереть все
-            function removeAll() {
-                var lst = document.getElementsByTagName("ul");
-                lst[0].innerHTML = "";                
-            }
-            
-            var checkedList = document.querySelector('ul');                
-            var todoTasks;
-            function saveLocal() {                    
-                todoTasks = list.innerHTML
-                localStorage.setItem('todoTasks', todoTasks);
-            }
-            for (var j = 1; j <= localStorage.length; j++) {
-                var li = document.createElement("li");
-                var inputValue = document.getElementById("myInput").value;
-                var t = document.createTextNode(inputValue);
+                for (var j = 1; j <= localStorage.length; j++) {
+                    var li = document.createElement("li");
+                    var inputValue = document.getElementById("myInput").value;
+                    var t = document.createTextNode(inputValue);                
+                    li.appendChild(t);
+                    li.innerText = localStorage[j];                
+                }
                 
-                li.appendChild(t);
-                li.innerText = localStorage[j];
-                
-            }
+                if(localStorage.getItem('todoTasks')) {
+                checkedList.innerHTML = localStorage.getItem('todoTasks');
+                }     
             
-            if(localStorage.getItem('todoTasks')) {
-            checkedList.innerHTML = localStorage.getItem('todoTasks');
-            }     
-        
-        </script>
+            </script>        
     </body>
 </html>

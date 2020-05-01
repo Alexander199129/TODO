@@ -5,7 +5,7 @@ body {
 }
 * {
 	box-sizing: border-box;
-	border-radius: 50px;
+	border-radius: 26px;
 }
 ul {
 	margin: 0;
@@ -22,7 +22,7 @@ ul {
 		}
 	}
 	li.checked {
-		background: purple;
+		background:burlywood;
 		color: #eee;
 		text-decoration: line-through;
 		&::before {
@@ -50,8 +50,11 @@ ul {
 	}
 }
 .header {
-	padding: 30px 40px;
-	text-align: center;
+    padding: 56px 137px;
+    padding-bottom: 82px;
+    padding-left: 228px;
+    text-align: center;
+    background: url(todo.jpg) no-repeat center / cover;
 	&:after {
 		content: "";
 		display: table;
@@ -65,7 +68,8 @@ input {
 	width: 75%;
 	padding: 10px;
 	float: left;
-	font-size: 16px;
+    font-size: 16px;
+    opacity:0.5;
 }
 .addBtn {
 	padding: 10px;
