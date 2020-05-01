@@ -34,7 +34,7 @@
                         alert("Add task");
                     } else {
                         document.getElementById("addtasks").appendChild(li);                                                          
-                    }                                          
+                    }                                                           
                     
                     document.getElementById("myInput").value = "";
                     var span = document.createElement("SPAN");
@@ -42,22 +42,23 @@
                     span.className = "close";
                     li.appendChild(span);
 
+                    //Удаление таска
                     const removeLi = () => {
                         var taskList = document.getElementById("addtasks");
-                        taskList.removeChild(li);
+                        taskList.removeChild(li);                        
                     }
                     span.addEventListener("click", removeLi);                                   
                     
                     localStorage.setItem(localStorage.length + 1, li.innerText);                             
                 }                
 
-                // Стереть все
+                // Стереть все таски
                 function removeAll() {
                     var lst = document.getElementsByTagName("ul");
                     lst[0].innerHTML = "";                
                 }
                 
-                var checkedList = document.querySelector('ul');                
+                var taskChecked = document.querySelector('ul');                
                 var todoTasks;
                 function saveLocal() {                    
                     todoTasks = list.innerHTML
@@ -73,7 +74,7 @@
                 }
                 
                 if(localStorage.getItem('todoTasks')) {
-                checkedList.innerHTML = localStorage.getItem('todoTasks');
+                    taskChecked.innerHTML = localStorage.getItem('todoTasks');
                 }     
             
             </script>        
